@@ -12,7 +12,6 @@ main pull x, n
   sl x
   sub x, n
   jngt x, naobiss
-  
   pull x, n
   mod x, a
 

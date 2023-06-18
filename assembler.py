@@ -9,6 +9,20 @@ names = []
 instructions = ['add', 'sub', 'goto', 'mov', 'jz', 'halt', 'wb', 'ww']
 instruction_set = {'add' : 0x02, 
                    'sub' : 0x06, 
+                   'mult': 0x0A,
+                   'div':0x0E,
+                   'mod':0x12,
+                   'pot':0x16,
+                   'pull':0x1A,
+                   'fat':0x1E,
+                   'inc':
+                   'dec':
+                   'div2':
+                   'mult2':
+                   'pisolog':
+                   'tetolog':
+                   'zero':
+                   'if<0':
                    'mov' : 0x0A, 
                    'goto': 0x0D,
                    'jz'  : 0x0F, 
@@ -141,6 +155,14 @@ def resolve_names():
                line[i] = get_name_byte(line[i])//4
             else:
                line[i] = get_name_byte(line[i])
+
+
+
+
+
+
+
+
 
 for line in fsrc:
    tokens = line.replace('\n','').replace(',','').lower().split(" ")
