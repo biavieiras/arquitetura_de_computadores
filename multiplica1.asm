@@ -2,8 +2,8 @@ goto main
  wb 0
  
 r ww 0 
-b ww 35
-c ww 7
+b ww 7
+c ww 35
 u ww 1
 
 main add x, c      # if c=0 goto final
