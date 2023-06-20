@@ -19,8 +19,6 @@ instruction_set = {'add' : 0x02,
                    #'dec':
                    #'div2':
                    #'mult2':
-                   #'pisolog':
-                   #'tetolog':
                    #'zero':
                    #'if<0':
                    'mov' : 0x0A, 
