@@ -25,7 +25,7 @@ Y = 3
 firmware[1] = 0b000110001_000_00110110_010000000011
 
 
-## if MDR == 0; GOTO 52 + 256; else GOTO 52
+## if MDR == 0; GOTO 3 + 256; else GOTO 3
 firmware[2] = 0b000110100_001_00010100_000000_000_000
 
 ## Y <- MDR goto 4

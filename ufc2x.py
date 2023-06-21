@@ -71,70 +71,109 @@ firmware[16] = 0b00000000_000_00110101_001000_000_001
 ## 17: PC <- PC + 1; fetch; goto 18
 firmware[17] = 0b00010010_000_00110101_001000_001_001
 ## 18: MAR <- MBR; read; goto 19
-firmware[18] = 0b000001000_000_00010100_100000_010_010
+firmware[18] = 0b000010011_000_00010100_100000_010_010
 ## 19: H <- MDR; GOTO 20
-firmware[19] = 0b00001011000000010100000001000000
+firmware[19] = 0b000010100_000_00010100_000001_000_000
 ## 20: if X - H < 0; GOTO 21 + 256; else GOTO 21
-firmware[20] = 0b00001011101000111111000000000011
+firmware[20] = 0b000010101_01000111111000000000011
 ### [21] H é menor ou igual
 ## Y <- H; GOTO 22
-firmware[21] = 0b00001100000000011000000010000000
+firmware[21] = 0b000010110_00000011000000010000000
 ### [277] H é maior
 ## Y <- X; GOTO 23
-firmware[277] = 0b00001100100000010100000010000011
+firmware[277] = 0b000010111_00000010100000010000011
 ## H <- X; GOTO 23
-firmware[22] = 0b00001100100000010100000001000011
+firmware[22] = 0b000010111_00000010100000001000011
 ### [23] inicia a multiplicação
 ## X <- 0; GOTO 24
-firmware[23] = 0b00001101000000010000000100000000
+firmware[23] = 0b000011000_00000010000000100000000
 ## if Y == 0 GOTO 256 + 25; else GOTO 25
-firmware[24] = 0b00001101100100010100000000000100
+firmware[24] = 0b000011001_00100010100000000000100
 ### [281] y é zero, portanto, vá para a próxima instrução
-firmware[281] = 0b00000000010000110101001000001001
+firmware[281] = 0b000000000_10000110101001000001001
 ## Y <- Y - 1; GOTO 26
-firmware[25] = 0b00001110000000110110000010000100
+firmware[25] = 0b000011010_00000110110000010000100
 ## X <- X + H; GOTO 24
-firmware[26] = 0b00001101000000111100000100000011
+firmware[26] = 0b000011000_00000111100000100000011
 # H fica o maior
 # Y fica o menor
+
 
 # x <- X // memory[address]
 
 ## 27: PC <- PC + 1; fetch; goto 28
-firmware[27] = 0b0001001000000110101001000001001
+'''firmware[27] = 0b000011100_000_00110101_001000_001_001
 
 ## 28: MAR <- MBR; read; goto 29
-firmware[28] = 0b00000100000000010100100000010010
+firmware[28] = 0b000011101_000_00010100_100000_010_010
 
 ## 29: H <- MDR; GOTO 30
-firmware[29] = 0b00001011000000010100000001000000
+firmware[29] = 0b000011110_000_00010100_000001_000_000
 
 ## 30: Y <- X; GOTO 31
-firmware[30] = 0b00001100100000010100000010000011
+firmware[30] = 0b000011111_000_00010100_000010_000_011
 
 ## 31: X <- 0; GOTO 32
-firmware[31] = 0b00001101000000010000000100000000
+firmware[31] = 0b000100000_000_00010000_000100_000_000
 
-## 32: if Y-H == 0 goto 34; else goto 33
-firmware[32] = 0b00010000100100111111000000000100
+## 32: if Y-H == 0 goto 33 +256; else goto 33
+firmware[32] = 0b000100001_010_00111111_000000_000_100
 
-## 33: if Y - H < 0 GOTO 35 + 256; else GOTO 34
-firmware[33] = 0b00010001101000111111000010000100
+## 33: if Y - H < 0 GOTO 34 + 256; else GOTO 34
+firmware[33] = 0b000100010_010_00111111_000010_000_100
 
 ## 34: Y <- Y - H goto 35
-firmware[34] = 0b00010001101000111111000010000100
+firmware[34] = 0b000100011_010_00111111_000010_000_100
+
+## 289: Y <- Y - H goto 35
+firmware[289] = 0b000100011_010_00111111_000010_000_100
 
 ## 35: X <- X + 1 goto 32;
-firmware[35] = 0b000100000000110101000100000011
+firmware[35] = 0b000100000_000_00110101_010000_000_011
 
 ## [290] vá para a próxima instrução
-firmware[291] = 0b00000000010000110101001000001001
+firmware[290] = 0b000000000_100_00110101_001000_001_001
+
+'''
 
 # X <- X + 1(inc)
 firmware[36] = 0b00000000000000110101000100000011
 
 ## X <- X - 1; GOTO 0(dec)
 firmware[37] = 0b00000000000000110110000100000011
+
+
+
+
+
+# X <- X // memory[address]
+## PC <- PC + 1; MBR <- read_byte(PC); GOTO 30
+firmware[29] = 0b00001111000000110101001000001001
+## MAR <- MBR; read_word; GOTO 31
+firmware[30] = 0b00001111100000010100100000010010
+## H <- MDR; GOTO 32
+firmware[31] = 0b00010000000000010100000001000000
+## Y <- X; GOTO 33
+firmware[32] = 0b00010000100000010100000010000011
+## X <- 0; GOTO 34
+firmware[33] = 0b00010001000000010000000100000000
+## Y <- Y - H; if Y - H < 0 GOTO 35 + 256; else GOTO 35
+firmware[34] = 0b00010001101000111111000010000100
+### [35] Y é maior ou igual a 0
+## X <- X + 1; GOTO 34
+firmware[35] = 0b00010001000000110101000100000011
+### [291] Y é menor que 0
+firmware[291] = 0b00000000010000110101001000001001
+
+
+
+
+
+
+
+
+
+
 
 # X <- X + 1
 ##
@@ -150,7 +189,7 @@ X = 0
 Y = 0
 H = 0
 
-N = 0
+NGT = 0
 Z = 1
 
 BUS_A = 0
@@ -200,7 +239,7 @@ def write_regs(reg_bits):
             
 def alu(control_bits):
 
-    global BUS_A, BUS_B, BUS_C, N, Z
+    global BUS_A, BUS_B, BUS_C, NGT, Z
     
     a = BUS_A 
     b = BUS_B
@@ -245,12 +284,15 @@ def alu(control_bits):
         o = -1 
         
     if o == 0:
-        N = 0
         Z = 1
     else:
-        N = 1
         Z = 0
-        
+    
+    if o < 0:
+      NGT = 1
+    else:
+      NGT = 0
+
     if shift_bits == 0b01:
         o = o << 1
     elif shift_bits == 0b10:
@@ -263,7 +305,7 @@ def alu(control_bits):
 
 def next_instruction(next, jam):
 
-    global MPC, MBR, N, Z
+    global MPC, MBR, NGT, Z
     
     if jam == 0b000:
         MPC = next
@@ -273,7 +315,7 @@ def next_instruction(next, jam):
         next = next | (Z << 8)
         
     if jam & 0b010:                 # JAMN
-        next = next | (N << 8)
+        next = next | (NGT << 8)
 
     if jam & 0b100:                 # JMPC
         next = next | MBR
