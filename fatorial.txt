@@ -1,0 +1,21 @@
+FATORIAL SEM MULT DESENVOLVIDA
+
+##1 Y <- X GOTO 2
+##2 if (Y-1 == 0) GOTO 270; else GOTO 3
+##3 Y <- Y-1
+##4 X <- X*Y GOTO 2
+
+
+
+
+MULTIPLICAÇÃO
+
+X = 2
+Y = 3
+
+##1 if (X-Y > 0): X<-Y; else GOTO **Vai pegar o menor valor pro X, de forma o número de passos independe da ordem que foram dados os valores
+##2 H <- X **H é o auxiliar que diz quantas vezes vamos incrementar Y em X
+##3 X <- 0
+##4 if (H-1>0) GOTO 5; else GOTO 300
+##5 X <- X+Y  GOTO 6 **X vai incrementando o valor de Y, H vezes
+##6 H <- H-1 GOTO 4 H decrementa pra ir até
