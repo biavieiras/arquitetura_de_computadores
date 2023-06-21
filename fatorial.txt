@@ -1,0 +1,9 @@
+#1: MDR <- X-1
+#2: if MDR == 0 goto 265; else goto 3
+#3: Y <- MDR
+#4: H <- X
+#5: X <- 0
+#6: if Y = 0 goto 1; else goto 7
+#7: X <- X + H goto 5
+#8: Y <- Y - 1 got 6
+#265 finaliza
