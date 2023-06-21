@@ -19,3 +19,24 @@ Y = 3
 ##4 if (H-1>0) GOTO 5; else GOTO 300
 ##5 X <- X+Y  GOTO 6 **X vai incrementando o valor de Y, H vezes
 ##6 H <- H-1 GOTO 4 H decrementa pra ir até
+
+#X <- X!
+## MDR <- X-1; GOTO 49
+firmware[1] = 0b000110001_000_00110110_010000000011
+
+
+## if MDR == 0; GOTO 52 + 256; else GOTO 52
+firmware[2] = 0b000110100_001_00010100_000000_000_000
+
+## Y <- MDR goto 4
+firmware[3]
+##H<- x goto 5
+firmware[4]
+##X<- 0 goto 6
+firmware[5]
+##se y = 0 goto 1 ; else goto 7
+firmware[6] 
+##X<- X+H
+firmware[7] goto 8;
+##Y<- Y-1
+firmware[8] goto 5;
