@@ -20,11 +20,15 @@ Y = 3
 ##5 X <- X+Y  GOTO 6 **X vai incrementando o valor de Y, H vezes
 ##6 H <- H-1 GOTO 4 H decrementa pra ir até
 
+
+
+
 #X <- X!
-## MDR <- X-1; GOTO 49
-firmware[1] = 0b000110001_000_00110110_010000000011
 
+## MDR <- X; GOTO 49
+firmware[0] = 0b000110001_000_00110110_010000000011
 
+##1: MDR <- MDR-1
 ## if MDR == 0; GOTO 3 + 256; else GOTO 3
 firmware[2] = 0b000110100_001_00010100_000000_000_000
 
