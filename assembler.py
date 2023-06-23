@@ -19,7 +19,7 @@ instruction_set = {'add' : 0x02,
                    'dec':0x30,
                    #'div2':
                    #'mult2':
-                   #'zero':
+                   'zero':0x38,
                    #'if<0':
                    'mov' : 0x0A,
                    'goto': 0x0D,
@@ -87,7 +87,7 @@ def encode_ww(ops):
    return line_bin
       
 def encode_instruction(inst, ops):
-   if inst == 'add' or inst == 'sub' or inst == 'mov' or inst == 'jz' or inst == 'div' or inst == 'fat' or inst == 'mod':
+   if inst == 'add' or inst == 'sub' or inst == 'mov' or inst == 'jz' or inst == 'div' or inst == 'fat' or inst == 'mod' or inst == 'pull' or inst == 'zero':
       return encode_2ops(inst, ops)
    elif inst == 'goto':
       return encode_goto(ops)
@@ -149,8 +149,7 @@ def resolve_names():
    for line in lines_bin:
       for i in range(0, len(line)):
          if is_name(line[i]):
-            if line[i-1] == instruction_set['add'] or line[i-1] == instruction_set['sub'] or line[i-1] == instruction_set['mov'] or line[i-1] == instruction_set['div'] or line[i-1] == instruction_set['fat'] or line[i-1] == instruction_set['mod']:
-               line[i] = get_name_byte(line[i])//4
+            if line[i-1] == instruction_set['add'] or line[i-1] == instruction_set['sub'] or line[i-1] == instruction_set['mov'] or line[i-1] == instruction_set['div'] or line[i-1] == instruction_set['fat'] or line[i-1] == instruction_set['mod'] or line[i-1] == instruction_set['pull'] or line[i-1] == instruction_set['zero']:
                line[i] = get_name_byte(line[i])//4
             else:
                line[i] = get_name_byte(line[i])
