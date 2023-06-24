@@ -15,3 +15,4 @@ print("Antes da operação: ", mem.read_word(1))
 clk.start([cpu])
 
 print("Depois da operação ", mem.read_word(4))
+print("c ", mem.read_word(3))
