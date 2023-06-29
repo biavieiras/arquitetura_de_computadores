@@ -2,17 +2,15 @@ goto main
 wb 0
 
 r ww 0
-a ww 21
-b ww 10
+a ww 3000
+b ww 7
 c ww 0
 
 
-main add x, a
+main pull x, a
      div x, b
      mov x, r
-     zero x, c
-     add x, a
-     mod x, b
-     mov x, c
+     pull y, a
+     mod y, b
+     mov y, c
      halt
-

@@ -1,18 +1,20 @@
 goto main
 wb 0
 
-a ww 12
+a ww 3
 b ww 0
-c ww 0
+c ww 1
 d ww 0
 
 
 main pull x, a
+     pull y, a
+
+jump sub x, c
      jz x, final
-     dec x
-     mov x, a
-     mult x, a
-     mov x, c
-     
-     goto main
- 
+     mov x, b
+     mult y, b
+     goto jump
+
+final mov y, d
+     halt
