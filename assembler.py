@@ -47,6 +47,30 @@ def encode_2ops(inst, ops):
          if is_name(ops[1]):
             line_bin.append(instruction_set[inst])
             line_bin.append(ops[1])
+         elif ops[0]=='y':
+         #Aviso:Foi colocado os enderecos das instrucoes foram colocados diretamente.
+            if(inst=='add'):
+               line_bin.append(instruction_set[inst]+0x37)
+               line_bin.append(ops[1])
+            elif(inst=='mult'):
+               line_bin.append(instruction_set[inst]+0x2C)
+               line_bin.append(ops[1])
+            elif(inst=='mov'):
+               line_bin.append(instruction_set[inst]+0x38)
+               line_bin.append(ops[1])
+            elif(inst=='jz'):
+               line_bin.append(0x2A)
+               line_bin.append(ops[1])
+            elif(inst=='pull'):
+               line_bin.append(instruction_set[inst]+0x40)
+               line_bin.append(ops[1])
+         elif is_name(ops[0]) and inst=='jz':
+            line_bin.append(0x2E)
+            line_bin.append(ops[0])
+            #set x 
+            line_bin.append(0xB)
+            line_bin.append(ops[1])
+            #Usando o jz x
    return line_bin
 
 def encode_goto(ops):

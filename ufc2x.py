@@ -179,6 +179,83 @@ firmware[55] = 0b000000000_000_00010100_000100_000_000
 # X <- 0
 firmware[56] = 0b00000000000000010000000100000000
 
+# Y = Y + memory[address]
+
+## 2: PC <- PC + 1; fetch; goto 58
+firmware[57] = 0b000111010_000_00110101_001000_001_001
+
+## 3: MAR <- MBR; read_word(MAR); goto 59
+firmware[58] = 0b000111011_000_00010100_100000_010_010
+
+## 4: H <- MDR; goto 60
+firmware[59] = 0b000111100_000_00010100_000001_000_000
+
+## 5: Y <- H + Y; goto 0
+firmware[60] = 0b000000000_000_00111100_000100_000_100
+
+
+# Y <- Y * memory[adress](add)
+## 17: PC <- PC + 1; fetch; goto 18
+firmware[17] = 0b00010010_000_00110101_001000_001_001
+## 18: MAR <- MBR; read; goto 19
+firmware[18] = 0b000010011_000_00010100_100000_010_010
+## 19: H <- MDR; GOTO 20
+firmware[19] = 0b000010100_000_00010100_000001_000_000
+## 20: if X - H < 0; GOTO 21 + 256; else GOTO 21
+firmware[20] = 0b000010101_01000111111000000000011
+### [21] H é menor ou igual
+## Y <- H; GOTO 22
+firmware[21] = 0b000010110_00000011000000010000000
+### [277] H é maior
+## Y <- X; GOTO 23
+firmware[277] = 0b000010111_00000010100000010000011
+## H <- X; GOTO 23
+firmware[22] = 0b000010111_00000010100000001000011
+### [23] inicia a multiplicação
+## X <- 0; GOTO 24
+firmware[23] = 0b000011000_000_00010000_000100_000000
+## if Y == 0 GOTO 256 + 25; else GOTO 25
+firmware[24] = 0b000011001_00100010100000000000100
+### [281] y é zero, portanto, vá para a próxima instrução
+firmware[281] = 0b000000000_10000110101001000001001
+## Y <- Y - 1; GOTO 26
+firmware[25] = 0b000011010_00000110110000010000100
+## X <- X + H; GOTO 24
+firmware[26] = 0b000011000_00000111100000100000011
+# H fica o maior
+# Y fica o menor
+
+### [23] inicia a multiplicação
+## H <- Y GOTO 62
+firmware[61] = 0b000111110_000_00010100_000001_000_100
+## Y <- 0; GOTO 63
+firmware[62] = 0b000111111_000_00010000_000010_000_000
+## MDR <- MDR - 1; GOTO 64
+firmware[63] = 0b001000000_000_00110110_010000_000_100
+## Y <- Y + H; GOTO 65
+firmware[64] = 0b001000001_000_00111100_000010_000_100
+## if MDR == 0 GOTO 256 + 62; else GOTO 62
+firmware[65] = 0b000111110_001_00010100_000000_000_000
+##FINALIZA
+firmware[318] = 0b000000000_100_00110101_001000_001_001
+# H fica o maior
+# Y fica o menor
+
+
+# memory[address] = Y
+
+## 10: PC <- PC + 1; fetch; goto 11
+firmware[66] = 0b001000011_000_00110101_001000_001_001
+
+## 11: MAR <- MBR; goto 12
+firmware[67] = 0b001000100_000_00010100_100000_000_010
+
+## 12: MDR <- Y; write; goto 0
+firmware[68] = 0b00000000_000_00010100_010000_100_100
+
+
+
+
 
 MPC = 0
 MIR = 0
