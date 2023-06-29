@@ -7,7 +7,12 @@ c ww 0
 d ww 0
 
 
-main add x, a
-     fat x, d
-     mov x, d
-     halt
+main pull x, a
+     jz x, final
+     dec x
+     mov x, a
+     mult x, a
+     mov x, c
+     
+     goto main
+ 

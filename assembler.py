@@ -12,15 +12,11 @@ instruction_set = {'add' : 0x02,
                    'mult': 0x0A,
                    'div':0x1D,
                    'mod':0x31,
-                   #'pot':0x16,
                    'pull':0x35,
                    'fat':0x25,
                    'inc':0x2F,
                    'dec':0x30,
-                   #'div2':
-                   #'mult2':
                    'zero':0x38,
-                   #'if<0':
                    'mov' : 0x0A,
                    'goto': 0x0D,
                    'jz'  : 0x0F, 
