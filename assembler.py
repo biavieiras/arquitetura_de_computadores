@@ -61,6 +61,12 @@ def encode_2ops(inst, ops):
             elif(inst=='mov'):
                line_bin.append(instruction_set[inst]+0x3A)
                line_bin.append(ops[1])
+            elif(inst=='inc'):
+               line_bin.append(instruction_set[inst]+0x21)
+               line_bin.append(ops[1])
+            elif(inst=='dec'):
+               line_bin.append(instruction_set[inst]+0x21)
+               line_bin.append(ops[1])
             elif(inst=='jz'):
                line_bin.append(instruction_set[inst]+0x3F)
                line_bin.append(ops[1])
@@ -103,7 +109,7 @@ def encode_ww(ops):
    return line_bin
       
 def encode_instruction(inst, ops):
-   if inst == 'add' or inst == 'sub' or inst == 'mov' or inst == 'jz' or inst == 'div' or inst == 'fat' or inst == 'mod' or inst == 'pull' or inst == 'zero' or inst == 'mult':
+   if inst == 'add' or inst == 'sub' or inst == 'mov' or inst == 'jz' or inst == 'div' or inst == 'fat' or inst == 'mod' or inst == 'pull' or inst == 'zero' or inst == 'mult' or inst == 'inc' or inst == 'dec':
       return encode_2ops(inst, ops)
    elif inst == 'goto':
       return encode_goto(ops)
@@ -165,7 +171,7 @@ def resolve_names():
    for line in lines_bin:
       for i in range(0, len(line)):
          if is_name(line[i]):
-            if line[i-1] == instruction_set['add'] or line[i-1] == 0x39 or line[i-1] == instruction_set['sub'] or line[i-1] == instruction_set['mov'] or line[i-1] == 0x44 or line[i-1] == instruction_set['div'] or line[i-1] == instruction_set['fat'] or line[i-1] == instruction_set['mod'] or line[i-1] == 0x47 or line[i-1] == instruction_set['pull'] or line[i-1] == 0x4B or line[i-1] == instruction_set['zero'] or line[i-1] == 0x57 or line[i-1] == 0x66 or line[i-1] == instruction_set['mult'] or line[i-1] == 0x3D:
+            if line[i-1] == instruction_set['add'] or line[i-1] == 0x39 or line[i-1] == instruction_set['sub'] or line[i-1] == instruction_set['mov'] or line[i-1] == 0x44 or line[i-1] == instruction_set['div'] or line[i-1] == instruction_set['fat'] or line[i-1] == instruction_set['mod'] or line[i-1] == 0x47 or line[i-1] == instruction_set['pull'] or line[i-1] == 0x4B or line[i-1] == instruction_set['zero'] or line[i-1] == 0x57 or line[i-1] == 0x66 or line[i-1] == instruction_set['mult'] or line[i-1] == 0x3D or line[i-1] == instruction_set['inc'] or line[i-1] == 0x50 or line[i-1] == instruction_set['dec'] or line[i-1] == 0x51:
                line[i] = get_name_byte(line[i])//4
             else:
                line[i] = get_name_byte(line[i])
