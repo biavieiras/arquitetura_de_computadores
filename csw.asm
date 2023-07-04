@@ -2,9 +2,9 @@ goto main
 wb 0
 
 
-a ww 11
+a ww 1
 b ww 2
-c ww 11
+c ww 3
 d ww 0
 e ww 1
 
@@ -17,6 +17,7 @@ main add x, a
     pull x, e
     mov x, d
     halt
+
 final pull x, b
     mov x, c
     halt

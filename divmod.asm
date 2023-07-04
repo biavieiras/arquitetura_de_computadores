@@ -2,8 +2,8 @@ goto main
 wb 0
 
 r ww 0
-a ww 3000
-b ww 7
+a ww 50
+b ww 3
 c ww 0
 
 

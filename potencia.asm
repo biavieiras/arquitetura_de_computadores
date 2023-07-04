@@ -16,13 +16,15 @@ multiplica mult x, c
     dec y, c
     jz y, encerra
     goto multiplica
-
+    
 final inc y, c
     mov y, c
     halt
 
+zerou halt
+
 encerra mov x, c
     halt
 
-zerou halt
+
 
