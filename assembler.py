@@ -6,7 +6,7 @@ lines = []
 lines_bin = []
 names = []
 
-instructions = ['add', 'sub', 'goto', 'mov', 'jz', 'halt', 'wb', 'ww','mult','div','mod','pot','pull','fat','inc','dec','zero']
+instructions = ['add', 'sub', 'goto', 'mov', 'jz', 'halt', 'wb', 'ww','mult','div','mod','pull','fat','inc','dec','zero']
 instruction_set = {'add' : 0x02, 
                    'sub' : 0x06, 
                    'mult': 0x11,

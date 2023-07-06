@@ -1,9 +1,10 @@
 goto main
 wb 0
 
+
+a ww 17
+b ww 2
 r ww 0
-a ww 50
-b ww 3
 c ww 0
 
 
