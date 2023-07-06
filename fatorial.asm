@@ -10,11 +10,11 @@ d ww 0
 main pull x, a
      pull y, a
 
-jump sub x, c
+fatorial sub x, c
      jz x, final
      mov x, b
      mult y, b
-     goto jump
+     goto fatorial
 
 final mov y, d
      halt

@@ -12,7 +12,7 @@ disk.read(str(sys.argv[1]))
 
 print("")
 
-if str(sys.argv[1]) == "csw.out":
+if str(sys.argv[1]) == "csw.bin":
   print("Valor de A antes: ", mem.read_word(1))
   print("Valor de B antes: ", mem.read_word(2))
   print("Valor de C antes: ", mem.read_word(3))
@@ -21,12 +21,12 @@ if str(sys.argv[1]) == "csw.out":
 
 clk.start([cpu])
 
-if str(sys.argv[1]) == "fatorial.out":
+if str(sys.argv[1]) == "fatorial.bin":
   print("")
   print("Fatorial de ", mem.read_word(1), ":", mem.read_word(4))
   print("")
 
-elif str(sys.argv[1]) == "csw.out":
+elif str(sys.argv[1]) == "csw.bin":
   print("")
   print("Valor de A: ", mem.read_word(1))
   print("Valor de B: ", mem.read_word(2))
@@ -34,7 +34,7 @@ elif str(sys.argv[1]) == "csw.out":
   print("Retorno: ", mem.read_word(4))
   print("")
 
-elif str(sys.argv[1]) == "divmod.out":
+elif str(sys.argv[1]) == "divmod.bin":
   print("")
   print("Divisão inteira de",mem.read_word(1),"por",mem.read_word(2), ":", mem.read_word(3))
   print("Resto: ", mem.read_word(4))
